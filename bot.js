@@ -24,7 +24,7 @@ client.on('message', message => {
   const incoming = message.content.toLowerCase();
   const thinking = incoming.split("");
   let sarcasticResponse = "H";
-  if (thinking[0] === "h" && thinking[1] === "m" && message.author.username !== "tombot") {
+  if (thinking[0] === "h" && thinking[1] === "m" && !message.author.bot) {
     for (let i=0; i < thinking.length; i++){
       sarcasticResponse += "m";
     }
@@ -39,6 +39,23 @@ client.on('message', message => {
     message.channel.send(`Tom is cod.`);
   }
 });
+
+/* Fun and games end */
+
+// Creates emojis
+client.on('message', message => {
+  let splitMessage = message.content.split(" ");
+  if (splitMessage[0] === '/tomoji' ) {
+    let img = splitMessage[1];
+    let emojiName = splitMessage[2];
+    message.channel.send(`Working on it, ${message.author}. Creating you an emoji with that image and giving it the name "${emojiName}".`);
+    message.guild.createEmoji(img, emojiName);
+    message.channel.send(`OK, done. Type :${emojiName}: to try it out.`);
+  }
+});
+
+
+
 
 // Log in
 client.login(token);
