@@ -2,7 +2,19 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 // Get the discord API key
-const apiKey = require("./secrets.json");
+const credentials = require("./secrets.json");
+const token = credentials.token;
 
-console.log(apiKey.client_ID);
-console.log(apiKey.client_secret);
+client.on('ready', () => {
+  console.log('I am ready!');
+});
+
+// Create an event listener for messages
+client.on('message', message => {
+  if (message.content.toLowerCase() === 'tom' ) {
+    message.channel.send(`Cool person you're talking about there.`);
+  }
+});
+
+// Log in
+client.login(token);
