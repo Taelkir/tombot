@@ -48,9 +48,8 @@ client.on('message', message => {
   if (splitMessage[0] === '/tomoji' ) {
     let img = splitMessage[1];
     let emojiName = splitMessage[2];
-    message.channel.send(`Working on it, ${message.author}. Creating you an emoji with that image and giving it the name "${emojiName}".`);
     message.guild.createEmoji(img, emojiName);
-    message.channel.send(`OK, done. Type :${emojiName}: to try it out.`);
+    message.channel.send(`Done, ${message.author}. I created an emoji for you with the name "${emojiName}".`);
   }
 });
 
