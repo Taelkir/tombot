@@ -11,13 +11,29 @@ client.on('ready', () => {
 
 /* Fun and games */
 
-// If someone mentions me, call them out for their good taste in friends
+// Word reactions & responses
 client.on('message', message => {
-  if (message.content.toLowerCase() === 'tom' ) {
-    let author = message.author;
-    message.channel.send(`Cool person you're talking about there, ${author}.`);
+  const incomingMessage = message.content.toLowerCase().split(" ");
+  let author = message.author;
+  let tombotMentioned = false;
+  let goodnightWished = false;
+  for (i=0; i<incomingMessage.length; i++){
+    if (incomingMessage[i] === 'tom') {
+      return message.channel.send(`Cool person you're talking about there, ${author}.`);
+    }
+    if (incomingMessage[i] === "tombot") {
+      tombotMentioned = true;
+    }
+    if (incomingMessage[i] === "goodnight") {
+      goodnightWished = true;
+    }
+    if (tombotMentioned && goodnightWished) {
+      return message.channel.send(`Goodnight to you too, ${author}.`);
+    }
   }
 });
+
+// TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output
 
 // Looks at the first two letters of the message, sees if they are h and m, if so, adds an m for each letter in the message then adds a fullstop and sends
 client.on('message', message => {
