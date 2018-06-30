@@ -18,7 +18,6 @@ client.on('message', message => {
     .toLowerCase()
     .replace(/[^A-Za-z0-9\s]/g, "")
     .split(" ");
-  console.log(incomingMessage);
   const author = message.author;
   let tombotMentioned = false;
   let goodnightWished = false;
