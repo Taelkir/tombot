@@ -32,7 +32,7 @@ client.on('message', message => {
 
 client.on('message', message => {
   if (!message.author.bot) {
-    if (message === 'tom') {
+    if (message.content === 'tom') {
       const author = message.author;
       return message.channel.send(`Cool person you're talking about there, ${author}.`);
     }
