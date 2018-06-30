@@ -14,13 +14,10 @@ client.on('ready', () => {
 // Word reactions & responses
 client.on('message', message => {
   const incomingMessage = message.content.toLowerCase().split(" ");
-  let author = message.author;
+  const author = message.author;
   let tombotMentioned = false;
   let goodnightWished = false;
   for (i=0; i<incomingMessage.length; i++){
-    if (incomingMessage[i] === 'tom') {
-      return message.channel.send(`Cool person you're talking about there, ${author}.`);
-    }
     if (incomingMessage[i] === "tombot") {
       tombotMentioned = true;
     }
@@ -29,6 +26,15 @@ client.on('message', message => {
     }
     if (tombotMentioned && goodnightWished) {
       return message.channel.send(`Goodnight to you too, ${author}.`);
+    }
+  }
+});
+
+client.on('message', message => {
+  if (!message.author.bot) {
+    if (message === 'tom') {
+      const author = message.author;
+      return message.channel.send(`Cool person you're talking about there, ${author}.`);
     }
   }
 });
@@ -51,12 +57,16 @@ client.on('message', message => {
 
 // Memes
 client.on('message', message => {
-  if (message.content.toLowerCase() === 'cod' ) {
-    message.channel.send(`Tom is cod.`);
+  if (!message.author.bot) {
+    if (message.content.toLowerCase() === 'cod' ) {
+      message.channel.send(`Tom is cod.`);
+    }
   }
 });
 
 /* Fun and games end */
+
+/* Utilities */
 
 // Creates emojis
 client.on('message', message => {
@@ -69,7 +79,7 @@ client.on('message', message => {
   }
 });
 
-
+/* Utilities end */
 
 
 // Log in
