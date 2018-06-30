@@ -13,7 +13,12 @@ client.on('ready', () => {
 
 // Word reactions & responses
 client.on('message', message => {
-  const incomingMessage = message.content.toLowerCase().split(" ");
+  // Tidy up the incoming message first
+  const incomingMessage = message.content
+    .toLowerCase()
+    .replace(/[^A-Za-z0-9\s]/g, "")
+    .split(" ");
+  console.log(incomingMessage);
   const author = message.author;
   let tombotMentioned = false;
   let goodnightWished = false;
