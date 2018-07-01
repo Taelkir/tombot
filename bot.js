@@ -43,6 +43,31 @@ client.on('message', message => {
   }
 });
 
+// Hewwo?
+
+client.on('message', message => {
+  if (!message.author.bot) {
+    const incomingMessage = message.content
+      .toLowerCase()
+      .replace(/[^A-Za-z0-9\s]/g, "")
+      .split(" ");
+    for (i=0; i<incomingMessage.length; i++){
+      if (incomingMessage[i] === "hewwo") {
+        const author = message.author.username.toString().replace(/@/g, "");
+        const hewwoAuthor = woobifwy(author);
+        return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
+      }
+    }
+  }
+});
+
+function woobifwy(string) {
+  return string.toString()
+  .replace(/l/g, "w")
+  .replace(/r/g, "w")
+  .replace(/f/g, "fw");
+}
+
 // TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output
 
 // Looks at the first two letters of the message, sees if they are h and m, if so, adds an m for each letter in the message then adds a fullstop and sends
