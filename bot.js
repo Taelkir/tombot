@@ -41,8 +41,8 @@ client.on('message', message => {
     const cleanedMessage = utilities.parseMessage(message);
     for (i=0; i<cleanedMessage.length; i++){
       if (cleanedMessage[i] === 'tom') {
-        const author = message.author;
-        return message.channel.send(`Cool person you're talking about there, ${author}.`);
+        responses.tom(message.author, message);
+        break;
       }
     }
   }
