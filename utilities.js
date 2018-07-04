@@ -4,4 +4,4 @@
 }
 
 
-module.exports = utilities;
+module.exports = "utilities";
