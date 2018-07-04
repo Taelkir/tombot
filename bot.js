@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const utilities = require('./utilities.js');
+const responses = require('./responses.js');
 
 // Get the discord API key
 const credentials = require("./secrets.json");
