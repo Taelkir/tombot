@@ -38,9 +38,12 @@ client.on('message', message => {
 
 client.on('message', message => {
   if (!message.author.bot) {
-    if (message.content === 'tom') {
-      const author = message.author;
-      return message.channel.send(`Cool person you're talking about there, ${author}.`);
+    const cleanedMessage = utilities.parseMessage(message);
+    for (i=0; i<cleanedMessage.length; i++){
+      if (cleanedMessage[i] === 'tom') {
+        const author = message.author;
+        return message.channel.send(`Cool person you're talking about there, ${author}.`);
+      }
     }
   }
 });
@@ -49,26 +52,17 @@ client.on('message', message => {
 
 client.on('message', message => {
   if (!message.author.bot) {
-    const incomingMessage = message.content
-      .toLowerCase()
-      .replace(/[^A-Za-z0-9\s]/g, "")
-      .split(" ");
-    for (i=0; i<incomingMessage.length; i++){
-      if (incomingMessage[i] === "hewwo") {
+    const cleanedMessage = utilities.parseMessage(message);
+    for (i=0; i<cleanedMessage.length; i++){
+      if (cleanedMessage[i] === "hewwo") {
         const author = message.author.username.toString().replace(/@/g, "");
-        const hewwoAuthor = woobifwy(author);
+        const hewwoAuthor = utilities.woobifwy(author);
         return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
       }
     }
   }
 });
 
-function woobifwy(string) {
-  return string.toString()
-  .replace(/l/g, "w")
-  .replace(/r/g, "w")
-  .replace(/f/g, "fw");
-}
 
 // TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output
 
