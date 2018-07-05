@@ -4,6 +4,7 @@ function d100(){
 
 // 50% chance to call Tom handsome, 50% chance to compliment Tom's personality
 exports.tom = (author, message) => {
+  // add IF TOM code
   const percentage = d100();
   if (percentage < 100 && percentage >= 50) {
     return message.channel.send(`Handsome person you're talking about there, ${author}.`);
