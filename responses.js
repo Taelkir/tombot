@@ -11,3 +11,7 @@ exports.tom = (author, message) => {
     return message.channel.send(`What a great person you're talking about, ${author}.`)
   }
 }
+
+exports.davide = (author, message) => {
+  // TODO: every rime someone said davide, It said I'M DAVIDE
+}
