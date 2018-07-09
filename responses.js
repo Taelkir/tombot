@@ -68,7 +68,7 @@ exports.hmmm = message => {
       sarcasticResponse += "m";
     }
   sarcasticResponse += ".";
-  return message.channel.send(`${sarcasticResponse} from local.`);
+  return message.channel.send(sarcasticResponse);
   }
 }
 
