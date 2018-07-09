@@ -5,6 +5,9 @@ function d100(){
   return Math.floor(Math.random() * 100);
 }
 
+// TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output
+
+
 // Check to see if the message has the word "tom" in, then 50% chance to call Tom handsome, 50% chance to compliment Tom's personality
 exports.tom = (message) => {
   if (!message) {
@@ -24,6 +27,7 @@ exports.tom = (message) => {
   }
 };
 
+// Check to see if the message has the word "hewwo" in, then respond saying hewwo back
 exports.hewwo = (message) => {
   const cleanedMessage = utilities.parseMessage(message);
   for (i=0; i<cleanedMessage.length; i++){
@@ -33,8 +37,25 @@ exports.hewwo = (message) => {
       return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
     }
   }
-}
+};
 
+// Check for the words "goodnight" and "tombot" in the same message
+exports.goodnight = message => {  const cleanedMessage = utilities.parseMessage(message);
+  const author = message.author;
+  let tombotMentioned = false;
+  let goodnightWished = false;
+  for (i=0; i<cleanedMessage.length; i++){
+    if (cleanedMessage[i] === "tombot") {
+      tombotMentioned = true;
+    }
+    if (cleanedMessage[i] === "goodnight") {
+      goodnightWished = true;
+    }
+    if (tombotMentioned && goodnightWished) {
+      return message.channel.send(`Goodnight to you too, ${author}.`);
+    }
+  }
+};
 
 exports.davide = (author, message) => {
   // TODO: every rime someone said davide, It said I'M DAVIDE
