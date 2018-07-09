@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const utilities = require('./utilities.js');
 const responses = require('./responses.js');
 
 // Get the discord API key
@@ -38,30 +37,24 @@ client.on('message', message => {
 
 client.on('message', message => {
   if (!message.author.bot) {
-    const cleanedMessage = utilities.parseMessage(message);
-    for (i=0; i<cleanedMessage.length; i++){
-      if (cleanedMessage[i] === 'tom') {
-        responses.tom(message.author, message);
-        break;
-      }
-    }
+    responses.tom(message);
   }
 });
 
 // Hewwo?
 
-client.on('message', message => {
-  if (!message.author.bot) {
-    const cleanedMessage = utilities.parseMessage(message);
-    for (i=0; i<cleanedMessage.length; i++){
-      if (cleanedMessage[i] === "hewwo") {
-        const author = message.author.username.toString().replace(/@/g, "");
-        const hewwoAuthor = utilities.woobifwy(author);
-        return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
-      }
-    }
-  }
-});
+// client.on('message', message => {
+//   if (!message.author.bot) {
+//     const cleanedMessage = utilities.parseMessage(message);
+//     for (i=0; i<cleanedMessage.length; i++){
+//       if (cleanedMessage[i] === "hewwo") {
+//         const author = message.author.username.toString().replace(/@/g, "");
+//         const hewwoAuthor = utilities.woobifwy(author);
+//         return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
+//       }
+//     }
+//   }
+// });
 
 
 // TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output

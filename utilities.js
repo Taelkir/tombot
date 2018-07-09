@@ -1,4 +1,4 @@
-// Read and parse incoming messages
+// Read and parse incoming messages. Turns them into an array with each word as a string in the array with no punctuation
 exports.parseMessage = message => {
     const cleanMessage = message.content
       .toLowerCase()
