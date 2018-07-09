@@ -15,25 +15,18 @@ client.on('ready', () => {
 // Word reactions & responses
 client.on('message', message => {
   if (!message.author.bot) {
+
     responses.tom(message);
     responses.hewwo(message);
     responses.goodnight(message);
+    responses.hmmm(message);
+
   }
 });
 
 
 // Looks at the first two letters of the message, sees if they are h and m, if so, adds an m for each letter in the message then adds a fullstop and sends
 client.on('message', message => {
-  const incoming = message.content.toLowerCase();
-  const thinking = incoming.split("");
-  let sarcasticResponse = "H";
-  if (thinking[0] === "h" && thinking[1] === "m" && !message.author.bot) {
-    for (let i=0; i < thinking.length; i++){
-      sarcasticResponse += "m";
-    }
-  sarcasticResponse += ".";
-  message.channel.send(sarcasticResponse);
-  }
 });
 
 // Memes

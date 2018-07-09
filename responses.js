@@ -40,7 +40,8 @@ exports.hewwo = (message) => {
 };
 
 // Check for the words "goodnight" and "tombot" in the same message
-exports.goodnight = message => {  const cleanedMessage = utilities.parseMessage(message);
+exports.goodnight = message => {
+  const cleanedMessage = utilities.parseMessage(message);
   const author = message.author;
   let tombotMentioned = false;
   let goodnightWished = false;
@@ -56,6 +57,20 @@ exports.goodnight = message => {  const cleanedMessage = utilities.parseMessage(
     }
   }
 };
+
+// Check for "Hmm"s and "Hmm{+1m}" back
+exports.hmmm = message => {
+  const cleanedMessage = utilities.parseMessage(message);
+  const letters = cleanedMessage.toString().split("");
+  let sarcasticResponse = "H";
+  if (letters[0] === "h" && letters[1] === "m") {
+    for (let i=0; i < letters.length; i++){
+      sarcasticResponse += "m";
+    }
+  sarcasticResponse += ".";
+  return message.channel.send(`${sarcasticResponse} from local.`);
+  }
+}
 
 exports.davide = (author, message) => {
   // TODO: every rime someone said davide, It said I'M DAVIDE
