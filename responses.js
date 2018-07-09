@@ -7,6 +7,9 @@ function d100(){
 
 // Check to see if the message has the word "tom" in, then 50% chance to call Tom handsome, 50% chance to compliment Tom's personality
 exports.tom = (message) => {
+  if (!message) {
+    console.error(`responses.tom was called without providing a message to work with.`);
+  }
   const cleanedMessage = utilities.parseMessage(message);
   const author = message.author;
   for (i=0; i<cleanedMessage.length; i++){
