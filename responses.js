@@ -24,6 +24,17 @@ exports.tom = (message) => {
   }
 };
 
+exports.hewwo = (message) => {
+  const cleanedMessage = utilities.parseMessage(message);
+  for (i=0; i<cleanedMessage.length; i++){
+    if (cleanedMessage[i] === "hewwo") {
+      const author = message.author.username.toString().replace(/@/g, "");
+      const hewwoAuthor = utilities.woobifwy(author);
+      return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
+    }
+  }
+}
+
 
 exports.davide = (author, message) => {
   // TODO: every rime someone said davide, It said I'M DAVIDE
