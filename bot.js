@@ -20,23 +20,11 @@ client.on('message', message => {
     responses.hewwo(message);
     responses.goodnight(message);
     responses.hmmm(message);
-
+    responses.cod(message);
+    
   }
 });
 
-
-// Looks at the first two letters of the message, sees if they are h and m, if so, adds an m for each letter in the message then adds a fullstop and sends
-client.on('message', message => {
-});
-
-// Memes
-client.on('message', message => {
-  if (!message.author.bot) {
-    if (message.content.toLowerCase() === 'cod' ) {
-      message.channel.send(`Tom is cod.`);
-    }
-  }
-});
 
 /* Fun and games end */
 

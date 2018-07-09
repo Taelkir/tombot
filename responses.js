@@ -70,7 +70,18 @@ exports.hmmm = message => {
   sarcasticResponse += ".";
   return message.channel.send(sarcasticResponse);
   }
+};
+
+// Cod
+exports.cod = message => {
+  const cleanedMessage = utilities.parseMessage(message);
+  for (i=0; i<cleanedMessage.length; i++){
+    if (cleanedMessage[i] === 'cod' ) {
+      message.channel.send(`Tom is cod.`);
+    }
+  }
 }
+
 
 exports.davide = (author, message) => {
   // TODO: every rime someone said davide, It said I'M DAVIDE
