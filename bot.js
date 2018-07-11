@@ -15,13 +15,14 @@ client.on('ready', () => {
 // Word reactions & responses
 client.on('message', message => {
   if (!message.author.bot) {
+    const cleanedMessage = utilities.parseMessage(message);
 
-    responses.tom(message);
-    responses.hewwo(message);
-    responses.goodnight(message);
-    responses.hmmm(message);
-    responses.cod(message);
-    
+    responses.tom(message, cleanedMessage);
+    responses.hewwo(message, cleanedMessage);
+    responses.goodnight(message, cleanedMessage);
+    responses.hmmm(message, cleanedMessage);
+    responses.cod(message, cleanedMessage);
+
   }
 });
 

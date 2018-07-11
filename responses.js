@@ -9,11 +9,10 @@ function d100(){
 
 
 // Check to see if the message has the word "tom" in, then 50% chance to call Tom handsome, 50% chance to compliment Tom's personality
-exports.tom = (message) => {
+exports.tom = (message, cleanedMessage) => {
   if (!message) {
     console.error(`responses.tom was called without providing a message to work with.`);
   }
-  const cleanedMessage = utilities.parseMessage(message);
   const author = message.author;
   for (i=0; i<cleanedMessage.length; i++){
     if (cleanedMessage[i] === 'tom') {
@@ -28,8 +27,7 @@ exports.tom = (message) => {
 };
 
 // Check to see if the message has the word "hewwo" in, then respond saying hewwo back
-exports.hewwo = (message) => {
-  const cleanedMessage = utilities.parseMessage(message);
+exports.hewwo = (message, cleanedMessage) => {
   for (i=0; i<cleanedMessage.length; i++){
     if (cleanedMessage[i] === "hewwo") {
       const author = message.author.username.toString().replace(/@/g, "");
@@ -40,8 +38,7 @@ exports.hewwo = (message) => {
 };
 
 // Check for the words "goodnight" and "tombot" in the same message
-exports.goodnight = message => {
-  const cleanedMessage = utilities.parseMessage(message);
+exports.goodnight = (message, cleanedMessage) => {
   const author = message.author;
   let tombotMentioned = false;
   let goodnightWished = false;
@@ -59,8 +56,7 @@ exports.goodnight = message => {
 };
 
 // Check for "Hmm"s and "Hmm{+1m}" back
-exports.hmmm = message => {
-  const cleanedMessage = utilities.parseMessage(message);
+exports.hmmm = (message, cleanedMessage) => {
   const letters = cleanedMessage.toString().split("");
   let sarcasticResponse = "H";
   if (letters[0] === "h" && letters[1] === "m") {
@@ -73,8 +69,7 @@ exports.hmmm = message => {
 };
 
 // Cod
-exports.cod = message => {
-  const cleanedMessage = utilities.parseMessage(message);
+exports.cod = (message, cleanedMessage) => {
   for (i=0; i<cleanedMessage.length; i++){
     if (cleanedMessage[i] === 'cod' ) {
       message.channel.send(`Tom is cod.`);
