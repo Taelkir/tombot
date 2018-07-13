@@ -27,8 +27,11 @@ client.on('message', message => {
 
 client.on('message', message => {
   if (!message.author.bot) {
-    const cleanedMessage = utilities.utilityParse(message);
-    utilities.emoji(message, cleanedMessage);
+    const utilityRequest = utilities.utilityParse(message);
+    if (utilityRequest){
+      utilities.emoji(message, utilityRequest);
+      // New utilities go here
+    }
   }
 });
 

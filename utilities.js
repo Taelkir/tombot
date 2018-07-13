@@ -9,15 +9,20 @@ exports.parseMessage = message => {
 
 // Parses the message but with punctuation/capital letters intact for URLs etc
 exports.utilityParse = message => {
+  if (message.content.charAt(0) === "!"){
     const cleanMessage = message.content
+      .substring(1)
       .split(" ");
     return cleanMessage;
+  } else {
+    return null;
+  }
 }
 
 
 // Creates emojis
 exports.emoji = (message, cleanedMessage) => {
-  if (cleanedMessage[0] === 'emojithis' ) {
+  if (cleanedMessage[0] === 'emoji' ) {
     let img = cleanedMessage[1];
     let emojiName = cleanedMessage[2];
     message.guild.createEmoji(img, emojiName);
