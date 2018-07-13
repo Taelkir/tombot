@@ -77,7 +77,11 @@ exports.cod = (message, cleanedMessage) => {
   }
 }
 
-
-exports.davide = (author, message) => {
-  // TODO: every rime someone said davide, It said I'M DAVIDE
+// I'm davide
+exports.davide = (message, cleanedMessage) => {
+  for (i=0; i<cleanedMessage.length; i++){
+    if (cleanedMessage[i] === "davide") {
+      message.channel.send(`[Davide voice] I'M DAVIDE`);
+    }
+  }
 }

@@ -24,6 +24,8 @@ client.on('message', message => {
     responses.goodnight(message, cleanedMessage);
     responses.hmmm(message, cleanedMessage);
     responses.cod(message, cleanedMessage);
+    responses.davide(message, cleanedMessage);
+
 
   }
 });
