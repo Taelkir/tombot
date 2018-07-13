@@ -19,7 +19,6 @@ exports.utilityParse = message => {
   }
 }
 
-
 // Creates emojis
 exports.emoji = (message, cleanedMessage) => {
   if (cleanedMessage[0] === 'emoji' ) {

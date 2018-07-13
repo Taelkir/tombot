@@ -7,7 +7,6 @@ function d100(){
 
 // TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output
 
-
 // Check to see if the message has the word "tom" in, then 50% chance to call Tom handsome, 50% chance to compliment Tom's personality
 exports.tom = (message, cleanedMessage) => {
   if (!message) {
