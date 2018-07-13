@@ -26,7 +26,7 @@ exports.emoji = (message, cleanedMessage) => {
     let img = cleanedMessage[1];
     let emojiName = cleanedMessage[2];
     message.guild.createEmoji(img, emojiName);
-    message.channel.send(`Done, ${message.author}. I created an emoji for you with the name "${emojiName}".`);
+    message.channel.send(`${message.author}, I tried to make your emoji for you. See if it works by typing :${emojiName}:.`);
   };
 }
 
