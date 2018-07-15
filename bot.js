@@ -11,6 +11,7 @@ client.on('ready', () => {
   console.log('I am ready!');
 });
 
+// TODO: If one is returned, don't do any others
 client.on('message', message => {
   if (!message.author.bot) {
     const cleanedMessage = utilities.parseMessage(message);
