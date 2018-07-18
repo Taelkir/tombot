@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const responses = require('./responses.js');
 const utilities = require('./utilities.js');
 
+let happyToBeHere = true;
+
 // Get the discord API key
 const credentials = require("./secrets.json");
 const token = credentials.token;
