@@ -28,6 +28,7 @@ client.on('message', message => {
 
 client.on('message', message => {
   if (!message.author.bot) {
+    // Check to see if the text starts with a `!`, if it does, preserve all other punctuation in the message during parsing
     const utilityRequest = utilities.utilityParse(message);
     if (utilityRequest){
       utilities.emoji(message, utilityRequest);

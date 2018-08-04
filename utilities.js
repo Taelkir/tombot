@@ -9,13 +9,18 @@ exports.parseMessage = message => {
 
 // Parses the message but with punctuation/capital letters intact for URLs etc
 exports.utilityParse = message => {
-  if (message.content.charAt(0) === "!"){
-    const cleanMessage = message.content
-      .substring(1)
-      .split(" ");
-    return cleanMessage;
-  } else {
-    return null;
+  try {
+    if (message.content.charAt(0) === "!"){
+      const cleanMessage = message.content
+        .substring(1)
+        .split(" ");
+      return cleanMessage;
+    } else {
+      return null;
+    }
+  }
+  catch(err) {
+    console.log(`There was an error with the message: "${message.content}". The error was: "${err.message}", during the utilityParse function.`)
   }
 }
 
@@ -24,8 +29,13 @@ exports.emoji = (message, cleanedMessage) => {
   if (cleanedMessage[0] === 'emoji' ) {
     let img = cleanedMessage[1];
     let emojiName = cleanedMessage[2];
-    message.guild.createEmoji(img, emojiName);
-    message.channel.send(`${message.author}, I tried to make your emoji for you. See if it works by typing :${emojiName}:.`);
+    message.guild.createEmoji(img, emojiName)
+      .then(emoji => message.channel.send(`${message.author}, I made you an emoji. See if it works by typing :${emojiName}:.`))
+      .catch((err) => {
+        console.error(`Failed to create an emoji from the message: "${message.content}". The error was: ${err.message};`)
+        message.channel.send(`Sorry, didn't manage to create that emoji for you. You should use the syntax "!emoji emojiURL emojiName".`);
+      }); // end catch
+
   };
 }
 
