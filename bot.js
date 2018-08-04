@@ -15,14 +15,20 @@ client.on('ready', () => {
 
 // TODO: If one is returned, don't do any others
 client.on('message', message => {
-  if (!message.author.bot) {
-    const cleanedMessage = utilities.parseMessage(message);
-    responses.tom(message, cleanedMessage);
-    responses.hewwo(message, cleanedMessage);
-    responses.goodnight(message, cleanedMessage);
-    responses.hmmm(message, cleanedMessage);
-    responses.cod(message, cleanedMessage);
-    responses.davide(message, cleanedMessage);
+  try{
+    if (!message.author.bot) {
+      const cleanedMessage = utilities.parseMessage(message);
+      responses.tom(message, cleanedMessage);
+      responses.hewwo(message, cleanedMessage);
+      responses.goodnight(message, cleanedMessage);
+      responses.hmmm(message, cleanedMessage);
+      responses.cod(message, cleanedMessage);
+      responses.davide(message, cleanedMessage);
+    }
+  }
+  catch(err) {
+    console.error(`An error occurred: ${err.message}.`);
+    message.channel.send(`That message caused an error. Someone call the robot doctor. More information: ${err.message}.`)
   }
 });
 
