@@ -33,7 +33,7 @@ exports.emoji = (message, cleanedMessage) => {
       .then(emoji => message.channel.send(`${message.author}, I made you an emoji. See if it works by typing :${emojiName}:.`))
       .catch((err) => {
         console.error(`Failed to create an emoji from the message: "${message.content}". The error was: ${err.message};`)
-        message.channel.send(`Sorry, didn't manage to create that emoji for you. You should use the syntax "!emoji emojiURL emojiName".`);
+        message.channel.send(`Sorry, didn't manage to create that emoji for you. The error was "${err.message}". Remember that the syntax is "!emoji emojiURL emojiName".`);
       }); // end catch
 
   };
