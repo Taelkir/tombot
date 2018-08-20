@@ -13,6 +13,10 @@ client.on('ready', () => {
   console.log('I am ready!');
 });
 
+client.on("error", (err) => {
+  console.error(`An error occurred. The error was: ${err}.`)
+});
+
 // TODO: If one is returned, don't do any others
 client.on('message', message => {
   try{
