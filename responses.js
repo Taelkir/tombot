@@ -54,16 +54,22 @@ exports.goodnight = (message, cleanedMessage) => {
   }
 };
 
-// Check for "Hmm"s and "Hmm{+1m}" back
+// Check for "Hmm"s and "Hmm{+1m}" back according to the first Hmm, imitating the incoming hmm's punctuation when possible
 exports.hmmm = (message, cleanedMessage) => {
-  const letters = cleanedMessage.toString().split("");
-  let sarcasticResponse = "H";
-  if (letters[0] === "h" && letters[1] === "m") {
-    for (let i=0; i < letters.length; i++){
-      sarcasticResponse += "m";
-    }
-  sarcasticResponse += ".";
-  return message.channel.send(sarcasticResponse);
+  const hmmPattern = /^hm+$/;
+  const hmm = cleanedMessage.find(w => hmmPattern.test(w));
+  if(hmm){
+    let sarcasticResponse = 'H' + Array(hmm.length).fill('m').join('');
+
+    // order matters here; this array will be searched in order to find a match for the end of the
+    // incoming message; so, putting the '' first would result in that always being the match, or
+    // putting the '!' before the '?!' would result in the '?!' never being reached
+    const endingPunctuation = ['...', '?!', '!?', '😨', '🤔', '?', '!', '~', ' :)', ' :(', '‽', ''];
+    let sarcasticPunctuation = 
+      endingPunctuation.find(p => message.content.endsWith(p)) || 
+      endingPunctuation[Math.floor(Math.random() * endingPunctuation.length)];
+
+    return message.channel.send(sarcasticResponse + sarcasticPunctuation);
   }
 };
 
