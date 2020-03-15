@@ -65,10 +65,10 @@ exports.hmmm = (message, cleanedMessage) => {
     // incoming message; so, putting the '' first would result in that always being the match, or
     // putting the '!' before the '?!' would result in the '?!' never being reached
     const endingPunctuation = [
-      '...', '?!', '!?', '😨', '🤔', '?', '!', '~', ' :)', ' :(', '‽', '.', ';', ',', '🔥', ''
+      '...', '?!', '!?', ' 😨', ' 🤔', '?', '!', '~', ' :)', ' :(', '‽', '.', ';', ' 🔥', ' 🤮', ' >:3', '>:)))', ''
     ];
     const sarcasticPunctuation = 
-      endingPunctuation.find(p => message.content.endsWith(p)) || 
+      endingPunctuation.find(p => message.content.endsWith(p.trim())) || 
       endingPunctuation[Math.floor(Math.random() * endingPunctuation.length)];
 
     return message.channel.send(sarcasticResponse + sarcasticPunctuation);
