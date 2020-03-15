@@ -46,3 +46,7 @@ exports.woobifwy = function (string) {
   .replace(/r/g, "w")
   .replace(/f/g, "fw");
 }
+
+exports.d100 = function() {
+  return Math.floor(Math.random() * 100);
+}

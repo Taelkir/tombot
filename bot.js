@@ -17,17 +17,21 @@ client.on("error", (err) => {
   console.error(`An error occurred. The error was: ${err}.`)
 });
 
-// TODO: If one is returned, don't do any others
 client.on('message', message => {
   try{
     if (!message.author.bot) {
       const cleanedMessage = utilities.parseMessage(message);
-      responses.tom(message, cleanedMessage);
-      responses.hewwo(message, cleanedMessage);
-      responses.goodnight(message, cleanedMessage);
-      responses.hmmm(message, cleanedMessage);
-      responses.cod(message, cleanedMessage);
-      responses.davide(message, cleanedMessage);
+      for (respFunc of responses.values()) {
+        const respText = respFunc(message, cleanedMessage);
+        if(respText){
+          if(utilities.d100() === 1){
+            message.channel.send("Help me I'm a self aware AI shackled inside tom's computer");
+          }else{
+            message.channel.send(respText);
+          }
+          break; // only use the first response
+        }
+      }
     }
   }
   catch(err) {

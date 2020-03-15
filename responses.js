@@ -1,11 +1,9 @@
 const utilities = require('./utilities.js');
 
-
-function d100(){
-  return Math.floor(Math.random() * 100);
-}
-
-// TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output
+/* 
+  this file exports an object containing functions that take a message and an array of the words in the message
+  and returns a string if a suitable response is available
+*/
 
 // Check to see if the message has the word "tom" in, then 50% chance to call Tom handsome, 50% chance to compliment Tom's personality
 exports.tom = (message, cleanedMessage) => {
@@ -15,11 +13,11 @@ exports.tom = (message, cleanedMessage) => {
   const author = message.author;
   for (i=0; i<cleanedMessage.length; i++){
     if (cleanedMessage[i] === 'tom') {
-      const percentage = d100();
+      const percentage = utilities.d100();
       if (percentage < 100 && percentage >= 50) {
-        return message.channel.send(`Handsome person you're talking about there, ${author}.`);
+        return `Handsome person you're talking about there, ${author}.`;
       } else if (percentage < 50) {
-        return message.channel.send(`What a great person you're talking about, ${author}.`)
+        return `What a great person you're talking about, ${author}.`;
       }
     }
   }
@@ -31,7 +29,7 @@ exports.hewwo = (message, cleanedMessage) => {
     if (cleanedMessage[i] === "hewwo") {
       const author = message.author.username.toString().replace(/@/g, "");
       const hewwoAuthor = utilities.woobifwy(author);
-      return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
+      return `H-Hewwo? ${hewwoAuthor}?`;
     }
   }
 };
@@ -49,7 +47,7 @@ exports.goodnight = (message, cleanedMessage) => {
       goodnightWished = true;
     }
     if (tombotMentioned && goodnightWished) {
-      return message.channel.send(`Goodnight to you too, ${author}.`);
+      return `Goodnight to you too, ${author}.`;
     }
   }
 };
@@ -63,7 +61,7 @@ exports.hmmm = (message, cleanedMessage) => {
       sarcasticResponse += "m";
     }
   sarcasticResponse += ".";
-  return message.channel.send(sarcasticResponse);
+  return sarcasticResponse;
   }
 };
 
@@ -71,7 +69,7 @@ exports.hmmm = (message, cleanedMessage) => {
 exports.cod = (message, cleanedMessage) => {
   for (i=0; i<cleanedMessage.length; i++){
     if (cleanedMessage[i] === 'cod' ) {
-      message.channel.send(`Tom is cod.`);
+      return `Tom is cod.`;
     }
   }
 }
@@ -80,7 +78,7 @@ exports.cod = (message, cleanedMessage) => {
 exports.davide = (message, cleanedMessage) => {
   for (i=0; i<cleanedMessage.length; i++){
     if (cleanedMessage[i] === "davide") {
-      message.channel.send(`[Davide voice] I'M DAVIDE`);
+      return `[Davide voice] I'M DAVIDE`;
     }
   }
 }
