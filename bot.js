@@ -17,11 +17,12 @@ client.on("error", (err) => {
   console.error(`An error occurred. The error was: ${err}.`)
 });
 
+// parse message to see if a message can be created in response
 client.on('message', message => {
   try{
     if (!message.author.bot) {
       const cleanedMessage = utilities.parseMessage(message);
-      for (respFunc of responses.values()) {
+      for (respFunc of Object.values(responses)) {
         const respText = respFunc(message, cleanedMessage);
         if(respText){
           if(utilities.d100() === 1){
@@ -40,12 +41,13 @@ client.on('message', message => {
   }
 });
 
+// parse message to see if a command is being issued
 client.on('message', message => {
   if (!message.author.bot) {
     // Check to see if the text starts with a `!`, if it does, preserve all other punctuation in the message during parsing
-    const utilityRequest = utilities.utilityParse(message);
-    if (utilityRequest){
-      utilities.emoji(message, utilityRequest);
+    const command = utilities.parseBangCommand(message);
+    if (command){
+      utilities.emoji(message, command);
       // New utilities go here
     }
   }

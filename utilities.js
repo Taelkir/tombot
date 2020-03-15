@@ -7,8 +7,8 @@ exports.parseMessage = message => {
     return cleanMessage;
 }
 
-// Parses the message but with punctuation/capital letters intact for URLs etc
-exports.utilityParse = message => {
+// Parses the message as a command with punctuation/capital letters intact for URLs etc
+exports.parseBangCommand = message => {
   try {
     if (message.content.charAt(0) === "!"){
       const cleanMessage = message.content
@@ -20,7 +20,7 @@ exports.utilityParse = message => {
     }
   }
   catch(err) {
-    console.log(`There was an error with the message: "${message.content}". The error was: "${err.message}", during the utilityParse function.`)
+    console.log(`There was an error with the message: "${message.content}". The error was: "${err.message}", during the parseBangCommand function.`)
   }
 }
 
