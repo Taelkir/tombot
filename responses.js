@@ -59,7 +59,7 @@ exports.hmmm = (message, cleanedMessage) => {
   const hmmPattern = /^hm+$/;
   const hmm = cleanedMessage.find(w => hmmPattern.test(w));
   if(hmm){
-    let sarcasticResponse = 'H' + Array(hmm.length).fill('m').join('');
+    const sarcasticResponse = 'H' + Array(hmm.length).fill('m').join('');
 
     // order matters here; this array will be searched in order to find a match for the end of the
     // incoming message; so, putting the '' first would result in that always being the match, or
@@ -67,7 +67,7 @@ exports.hmmm = (message, cleanedMessage) => {
     const endingPunctuation = [
       '...', '?!', '!?', '😨', '🤔', '?', '!', '~', ' :)', ' :(', '‽', '.', ';', ',', '🔥', ''
     ];
-    let sarcasticPunctuation = 
+    const sarcasticPunctuation = 
       endingPunctuation.find(p => message.content.endsWith(p)) || 
       endingPunctuation[Math.floor(Math.random() * endingPunctuation.length)];
 
