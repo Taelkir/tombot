@@ -36,7 +36,7 @@ client.on('message', message => {
     }
   }
   catch(err) {
-    console.error(`An error occurred: ${err.message}.`);
+    console.error(`An error occurred: ${err.message}.\n${err.stack}`);
     message.channel.send(`That message caused an error. Someone call the robot doctor. More information: ${err.message}.`)
   }
 });
