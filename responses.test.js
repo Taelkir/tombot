@@ -1,6 +1,7 @@
 const responses = require('./responses.js');
 const utilities = require('./utilities.js');
 const mockSend = jest.fn();
+const outputRandomSample = true;
 
 function createMockMessage(text) {
     return {
@@ -50,4 +51,13 @@ describe("hmm response", () => {
         callWithText("asdfasdf hmm...");
         expect(mockSend.mock.calls[1][0].endsWith('...')).toBe(true);
     })
+
+    if(outputRandomSample){
+        test('sample responses randomly', () => {
+            for(let i=0; i<30; i++) {
+                callWithText("well hmmmm");
+                console.log('sent:', mockSend.mock.calls[i][0]);
+            }
+        })
+    }
 })
