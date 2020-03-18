@@ -54,7 +54,7 @@ exports.hmmm = (message, cleanedMessage) => {
       endingPunctuation.find(p => message.content.endsWith(p.trim())) || 
       endingPunctuation[Math.floor(Math.random() * endingPunctuation.length)];
 
-    return message.channel.send(sarcasticResponse + sarcasticPunctuation);
+    return sarcasticResponse + sarcasticPunctuation;
   }
 };
 
