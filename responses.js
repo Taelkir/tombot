@@ -1,58 +1,41 @@
 const utilities = require('./utilities.js');
 
-
-function d100(){
-  return Math.floor(Math.random() * 100);
-}
-
-// TODO: Add a one in a hundred chance of it saying "Help me I'm a self aware AI shackled inside tom's computer" instead of the expected output
+/* 
+  this file exports an object containing functions that take a message and an array of the words in the message
+  and returns a string if a suitable response is available
+*/
 
 // Check to see if the message has the word "tom" in, then 50% chance to call Tom handsome, 50% chance to compliment Tom's personality
 exports.tom = (message, cleanedMessage) => {
-  if (!message) {
-    console.error(`responses.tom was called without providing a message to work with.`);
-  }
   const author = message.author;
-  for (i=0; i<cleanedMessage.length; i++){
-    if (cleanedMessage[i] === 'tom') {
-      const percentage = d100();
-      if (percentage < 100 && percentage >= 50) {
-        return message.channel.send(`Handsome person you're talking about there, ${author}.`);
-      } else if (percentage < 50) {
-        return message.channel.send(`What a great person you're talking about, ${author}.`)
-      }
+  if (cleanedMessage.includes('tom')) {
+    const roll = utilities.d100();
+    if (roll > 50) {
+      return `Handsome person you're talking about there, ${author}.`;
+    } else {
+      return `What a great person you're talking about, ${author}.`;
     }
   }
 };
 
 // Check to see if the message has the word "hewwo" in, then respond saying hewwo back
 exports.hewwo = (message, cleanedMessage) => {
-  for (i=0; i<cleanedMessage.length; i++){
-    if (cleanedMessage[i] === "hewwo") {
+  if(cleanedMessage.includes('hewwo')){
       const author = message.author.username.toString().replace(/@/g, "");
       const hewwoAuthor = utilities.woobifwy(author);
-      return message.channel.send(`H-Hewwo? ${hewwoAuthor}?`);
+      return `H-Hewwo? ${hewwoAuthor}?`;
     }
-  }
 };
 
 // Check for the words "goodnight" and "tombot" in the same message
 exports.goodnight = (message, cleanedMessage) => {
   const author = message.author;
-  let tombotMentioned = false;
-  let goodnightWished = false;
-  for (i=0; i<cleanedMessage.length; i++){
-    if (cleanedMessage[i] === "tombot") {
-      tombotMentioned = true;
-    }
-    if (cleanedMessage[i] === "goodnight") {
-      goodnightWished = true;
-    }
-    if (tombotMentioned && goodnightWished) {
-      return message.channel.send(`Goodnight to you too, ${author}.`);
-    }
+  const words = new Set(cleanedMessage);
+  if (words.has('tombot') && words.has('goodnight')) {
+    return `Goodnight to you too, ${author}.`;
   }
 };
+
 
 // Check for "Hmm"s and "Hmm{+1m}" back according to the first Hmm, imitating the incoming hmm's punctuation when possible
 exports.hmmm = (message, cleanedMessage) => {
@@ -77,18 +60,14 @@ exports.hmmm = (message, cleanedMessage) => {
 
 // Cod
 exports.cod = (message, cleanedMessage) => {
-  for (i=0; i<cleanedMessage.length; i++){
-    if (cleanedMessage[i] === 'cod' ) {
-      message.channel.send(`Tom is cod.`);
-    }
+  if (cleanedMessage.includes('cod') ) {
+    return `Tom is cod.`;
   }
 }
 
 // I'm davide
 exports.davide = (message, cleanedMessage) => {
-  for (i=0; i<cleanedMessage.length; i++){
-    if (cleanedMessage[i] === "davide") {
-      message.channel.send(`[Davide voice] I'M DAVIDE`);
-    }
+  if (cleanedMessage.includes("davide")) {
+    return `[Davide voice] I'M DAVIDE`;
   }
 }
