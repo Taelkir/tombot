@@ -20,7 +20,7 @@ client.on("error", (err) => {
 // parse message to see if a message can be created in response
 client.on('message', message => {
   try{
-    if (!message.author.bot) {
+    if (message.author.id != client.user.id) {
       const cleanedMessage = utilities.parseMessage(message);
       for (respFunc of Object.values(responses)) {
         const respText = respFunc(message, cleanedMessage);
